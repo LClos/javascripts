@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keldoric's Snake Oil Name Generator</title>
+</head>
+<style>
+    h1 {font-family: Verdana, MS Sans Serif, Geneva; color: #00FF00;}
+    h4 {font-family: Verdana, MS Sans Serif, Geneva; color: #FF0000;}
+    p {font-family: Verdana, MS Sans Serif, Geneva; color: #00FF00; font-size: 80%;}
+</style>
+<body bgcolor="#000000" link="#0000FF" vlink="#663399" alink="#990000" leftmargin="10" topmargin="15"  marginwidth="10" marginheight="15">
+<h1>Snake Oil Name Generator</h1>
+<h4>Powered by JavaScript by <b>Keldoric</b></h4>
+
+
+<p><b>Instructions:</b><br><b>1.</b> Click the button.<br><b>2.</b> Watch products appear in the box.<br><b>3.</b> Repeat to taste (use your Enter/Return key).<br></p>
+
+
+<script language="JavaScript">
+
+class SnakeOilPart
+{
+    constructor(part_array, select_prob, prefix_prob, double_prefix_prob)
+    {
+        this.part_array = part_array;
+        this.select_prob = select_prob;
+        this.prefix_prob = prefix_prob;
+        this.double_prefix_prob = double_prefix_prob;
+        this.prefix_array = ["un", "de", "re", "poly", "mono", "bi", "tri",
+                             "micro", "nano", "endo", "ecto", "meso", "hydro", "hygro"];
+    }
+    select()
+    {
+        if (Math.random() >= this.select_prob)
+        {
+            return ""
+        }
+        else
+        {
+            var index = Math.round(Math.random() * this.part_array.length);
+            var part = this.part_array[index];
+            var prefix1 = this.select_prefix(this.prefix_prob);
+            var prefix2 = this.select_prefix(this.double_prefix_prob);
+            var to_return = prefix1 + prefix2 + part;
+            return this.capitalize(to_return);
+        }
+    }
+    select_prefix(select_prob)
+    {
+        if (Math.random() >= select_prob)
+        {
+            return "";
+        }
+        else
+        {
+            var index = Math.round(Math.random() * this.prefix_array.length);
+            var to_return = this.prefix_array[index];
+            return to_return;
+        }
+    }
+    capitalize(string)
+    {
+        var first = string.slice(0, 1).toUpperCase();
+        var rest = string.slice(1);
+        return first + rest;
+    }
+}
+
+served_array = ["hot", "cold", "warm", "boiling", "frozen", "whipped", "iced", "organic", "fresh", "fuming",
+"inactive", "active", "hyperactive", "radioactive", "chromatic", "acidic", "effervescent"];
+
+prepped_array = ["sublimated", "condensed", "liquified", "hydrated", "aggravated", "saturated", "gasified",
+"evaporated", "irritated", "activated", "filtered", "combinant", "morphed", "mutated", "combined", "scoped",
+"granulated", "polarized", "carbonated"];
+
+active_array = ["halcion", "tedium", "actium", "clorox", "moron", "florentine", "pylon", "belgium",
+"anodyne", "pekingese", "sumerian", "vinyl", "bosporus", "linoleum", "asinine", "crouton", "delirium", "aspartame",
+"antipathy", "chagrin", "canadian", "talc", "geranium", "antigen", "rapine", "princeton", "byzantium", "collagen",
+"pizzazz", "quotidian", "gummi", "xena", "sin", "visine", "celinedion", "imodium", "fahrvergnügen", "sanatorium",
+"asparagus", "hefnerium", "antigone", "grenadine", "gambinium", "genovesium", "bonannium", "columbium", "lucchesium",
+"colonium", "bologna", "spam", "cylon", "highon", "klingon", "spandex", "dementium", "spazmodium", "kleenex",
+"ambidextrose"];
+
+adjunct_array = ["phobide", "chloride", "bromide", "foamide", "vomica", "peptide", "testifide", "upandide", "hogtide",
+"bugide", "phosphate", "potentate", "sulphate", "acolyte", "prelate", "retardant"];
+
+mode_array = ["tincture", "precipitate", "solution", "balm", "cream", "gel", "foam", "plaster", "injection", "oil",
+"suppositories", "drops", "salts", "capsules", "caplets", "tablets", "pills", "gelcaps", "geltabs", "epidural",
+"nostrum", "netty Pot", "mouthwash", "facewash", "vapor"];
+
+function makeOutString(input_array)
+{
+    out_string = "";
+    input_length = input_array.length;
+    for (var i = 0; i < input_length; i++)
+    {
+        x = input_array[i];
+        if (x != "")
+        {
+            out_string += x;
+            if (i != (input_length -1))
+            {
+                out_string += " ";
+            }
+        }
+    }
+    return out_string;
+}
+
+function getSnakeOil()
+{
+
+    let howServed = new SnakeOilPart(served_array, 0.8, 0.0, 0.0);
+    let howPrepped = new SnakeOilPart(prepped_array, 0.6, 0.5, 0.05);
+    let whatActive = new SnakeOilPart(active_array, 1.0, 0.4, 0.0);
+    let whatAdjunct = new SnakeOilPart(adjunct_array, 0.75, 0.8, 0.0);
+    let whatMode = new SnakeOilPart(mode_array, 0.8, 0.1, 0.0);
+
+    out_array = [howServed.select(), howPrepped.select(), whatActive.select(), whatAdjunct.select(), whatMode.select()];
+
+	document.SnakeOilForYou.SnakeOil.value = makeOutString(out_array);
+}
+</script>
+
+<form name="SnakeOilForYou" onsubmit="return false">
+<input type="TEXT" name="SnakeOil" size="60"><br>
+<input type="BUTTON" value="Whaddya Got?" onclick="getSnakeOil();">
+</form>
+
+<p style="color: #FF0000;">&copy 2008 Thermospastics, Inc.</p>
+
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Other directories to ignore
+.idea/
+*.log
+
+# Temp files
+*~
+
+# Other things to ignore
+.vscode/
+.Rhistory
+.nfs*
