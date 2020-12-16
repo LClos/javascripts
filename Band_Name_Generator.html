@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keldoric's Band Name Generator</title>
+</head>
+<style>
+    h1 {font-family: Verdana, MS Sans Serif, Geneva; color: #00FF00;}
+    h4 {font-family: Verdana, MS Sans Serif, Geneva; color: #FF0000;}
+    p {font-family: Verdana, MS Sans Serif, Geneva; color: #00FF00; font-size: 80%;}
+</style>
+<body bgcolor="#000000" link="#0000FF" vlink="#663399" alink="#990000" leftmargin="10" topmargin="15"  marginwidth="10" marginheight="15">
+<h1>Band Name Generator</h1>
+<h4>Powered by JavaScript from <b>Keldoric</b></h4>
+
+
+<p><b>Instructions:</b><br><b>1.</b> Click the button.<br><b>2.</b> Watch products appear in the box.<br><b>3.</b> Repeat to taste (use your Enter/Return key).<br></p>
+
+
+<script language="JavaScript" src="band_names.js">
+</script>
+<script language="JavaScript">
+function callBandName()
+{
+    document.BandName.BandNameResult.value = getBandName();
+}
+</script>
+
+<form name="BandName" onsubmit="return false">
+<input type="text" name="BandNameResult" size="50"><br>
+<input type="button" value="Get a Band Name" onclick="callBandName();">
+</form>
+
+<p style="color: #FF0000;">&copy 2007 Thermospastics, Inc.</p>
+
+
+</body>
+</html>
